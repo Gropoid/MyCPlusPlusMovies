@@ -1,8 +1,8 @@
 package fr.geraud.mycplusplusmovies
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -28,8 +28,8 @@ class MoviesControllerWrapperTest {
 
         val movies = controller.getMovies()
 
-        assertNull(movies)
-//        assertEquals(10, movies.size)
+        assertNotNull(movies)
+        assertEquals(10, movies.size)
         controller.dispose()
     }
 }

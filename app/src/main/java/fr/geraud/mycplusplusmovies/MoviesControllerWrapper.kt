@@ -17,7 +17,7 @@ class MoviesControllerWrapper {
 
     private external fun createMovieController(): Long
     private external fun disposeMovieController(handle: Long)
-    private external fun getMovies(handle: Long): Movie
+    private external fun getMovies(handle: Long): Array<Movie>
     external fun getMovieDetail(handle: Long, name: String)
 
     companion object {
