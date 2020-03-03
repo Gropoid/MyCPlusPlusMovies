@@ -15,21 +15,41 @@ import org.junit.runner.RunWith
 class MoviesControllerWrapperTest {
     @Test
     fun testCreateAndDelete() {
+        // WHEN
         val controller = MoviesControllerWrapper()
 
+        // THEN
         assertNotNull(controller)
-
         controller.dispose()
     }
 
     @Test
     fun testGetMovies() {
+        // GIVEN
         val controller = MoviesControllerWrapper()
 
+        // WHEN
         val movies = controller.getMovies()
 
+        // THEN
         assertNotNull(movies)
         assertEquals(10, movies.size)
+        controller.dispose()
+    }
+
+    @Test
+    fun testGetMovieDetails() {
+        // GIVEN
+        val controller = MoviesControllerWrapper()
+        val movies = controller.getMovies()
+
+        // WHEN
+        val details = movies
+            .map { controller.getMovieDetail(it.name) }
+
+        // THEN
+        assertEquals(10, details.size)
+
         controller.dispose()
     }
 }
