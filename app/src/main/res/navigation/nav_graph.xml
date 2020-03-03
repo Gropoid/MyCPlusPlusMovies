@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/movieListFragment">
+
+    <fragment
+        android:id="@+id/movieListFragment"
+        android:name="fr.geraud.mycplusplusmovies.movielist.MovieListFragment"
+        android:label="MovieListFragment" >
+        <action
+            android:id="@+id/action_go_detail"
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/movieListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="fr.geraud.mycplusplusmovies.moviedetail.MovieDetailFragment"
+        android:label="MovieDetailFragment" />
+</navigation>

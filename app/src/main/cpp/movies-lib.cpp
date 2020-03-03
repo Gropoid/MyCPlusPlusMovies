@@ -59,7 +59,8 @@ Java_fr_geraud_mycplusplusmovies_MoviesControllerWrapper_getMovieDetail
     movies::MovieDetail *detail = movieController->getMovieDetail(name_str);
     jclass movie_detail_cls = env->FindClass("fr/geraud/mycplusplusmovies/MovieDetail");
     jmethodID movie_detail_ctor = env->GetMethodID(movie_detail_cls,
-            "<init>", "(Ljava/lang/String;DLjava/lang/String;D[fr/geraud/mycplusplusmovies/Actor)V");
+                                                   "<init>",
+                                                   "(Ljava/lang/String;Ljava/lang/String;D[Lfr/geraud/mycplusplusmovies/Actor;)V");
     jclass actor_cls = env->FindClass("fr/geraud/mycplusplusmovies/Actor");
     jmethodID actor_ctor = env->GetMethodID(actor_cls, "<init>",
                                             "(Ljava/lang/String;ILjava/lang/String;)V");

@@ -14,8 +14,6 @@ data class MovieDetail(
 
         if (name != other.name) return false
         if (description != other.description) return false
-        if (score != other.score) return false
-        if (!actors.contentEquals(other.actors)) return false
 
         return true
     }
@@ -23,8 +21,6 @@ data class MovieDetail(
     override fun hashCode(): Int {
         var result = name.hashCode()
         result = 31 * result + description.hashCode()
-        result = 31 * result + score.hashCode()
-        result = 31 * result + actors.contentHashCode()
         return result
     }
 }
