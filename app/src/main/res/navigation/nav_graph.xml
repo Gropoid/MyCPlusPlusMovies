@@ -19,5 +19,9 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="fr.geraud.mycplusplusmovies.moviedetail.MovieDetailFragment"
-        android:label="MovieDetailFragment" />
+        android:label="MovieDetailFragment" >
+        <argument
+            android:name="movieName"
+            app:argType="string" />
+    </fragment>
 </navigation>

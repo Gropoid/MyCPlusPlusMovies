@@ -16,7 +16,7 @@ import timber.log.Timber
 class MovieListFragment : Fragment() {
 
     private val viewModel = MovieListViewModel(MoviesControllerWrapper())
-    private var adapter = MovieAdapter()
+    private var adapter = MovieAdapter(::onMovieClicked)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,11 +24,13 @@ class MovieListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_movie_list, container, false)
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.loadMovies()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieListDebugNavButton.setOnClickListener {
-            findNavController().navigate(R.id.action_go_detail)
-        }
         movieListRecycler.layoutManager = LinearLayoutManager(context)
         movieListRecycler.adapter = adapter
         viewModel.state.observe(viewLifecycleOwner, Observer { render(it) })
@@ -39,8 +41,8 @@ class MovieListFragment : Fragment() {
         adapter.setData(viewModelState.movies)
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.loadMovies()
+    private fun onMovieClicked(movieName: String) {
+        MovieListFragmentDirections.actionGoDetail(movieName = movieName)
+            .let { findNavController().navigate(it) }
     }
 }

@@ -8,7 +8,8 @@ import fr.geraud.mycplusplusmovies.Movie
 import fr.geraud.mycplusplusmovies.R
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class MovieAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MovieAdapter(val onItemClicked: (name: String) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val data = mutableListOf<Movie>()
 
     fun setData(movies: List<Movie>) {
@@ -19,7 +20,8 @@ class MovieAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.movie_item, parent, false).let { MovieViewHolder(it) }
+            .inflate(R.layout.movie_item, parent, false)
+            .let { MovieViewHolder(it) }
 
     override fun getItemCount() = data.size
 
@@ -27,6 +29,7 @@ class MovieAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         with(data[position]) {
             holder.itemView.movieItemName.text = name
             holder.itemView.movieItemLastUpdated.text = lastUpdated.toString()
+            holder.itemView.setOnClickListener { onItemClicked(name) }
         }
 
     class MovieViewHolder(movieView: View) : RecyclerView.ViewHolder(movieView)
