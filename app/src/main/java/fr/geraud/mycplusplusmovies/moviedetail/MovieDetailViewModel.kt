@@ -28,8 +28,8 @@ class MovieDetailViewModel(private val controller: MoviesControllerWrapper) : Vi
     val description: LiveData<String>
         get() = _description
 
-    private val _actors = NonNullMutableLiveData<Array<Actor>>(emptyArray())
-    val actors: LiveData<Array<Actor>>
+    private val _actors = NonNullMutableLiveData<List<Actor>>(emptyList())
+    val actors: LiveData<List<Actor>>
         get() = _actors
 
     fun loadMovieDetail(movieName: String) {
@@ -40,6 +40,7 @@ class MovieDetailViewModel(private val controller: MoviesControllerWrapper) : Vi
                         _score.value = "%.2f".format(it.score)
                         _description.value = it.description
                         _name.value = it.name
+                        _actors.value = it.actors.asList()
                     }
                 }
         }
