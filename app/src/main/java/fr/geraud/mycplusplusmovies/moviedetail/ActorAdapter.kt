@@ -47,7 +47,7 @@ class ActorAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val options = RequestOptions()
             .error(R.drawable.actor_placeholder)
             .fitCenter()
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
         Glide.with(imageView.context)
             .load(imageUrl)
             .listener(object :
